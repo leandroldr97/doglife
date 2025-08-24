@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Compras</title>
+</head>
+<body>
+    <h1>Compras</h1>
+    <a href="/compras/novo">Nova Compra</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Valor Total</th>
+            <th>Comprador</th>
+            <th>Anúncio</th>
+            <th>Ações</th>
+        </tr>
+        {% for c in compras %}
+        <tr>
+            <td>{{ c.id_compra }}</td>
+            <td>{{ c.valor_total }}</td>
+            <td>{{ c.comprador.nome }}</td>
+            <td>{{ c.anuncio.titulo }}</td>
+            <td>
+                <a href="/compras/editar/{{ c.id_compra }}">Editar</a>
+                <form action="/compras/deletar/{{ c.id_compra }}" method="POST" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Tem certeza?')">Deletar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

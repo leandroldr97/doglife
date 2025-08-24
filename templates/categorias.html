@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Categorias</title>
+</head>
+<body>
+    <h1>Categorias</h1>
+    <a href="/categorias/novo">Nova Categoria</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Ações</th>
+        </tr>
+        {% for c in categorias %}
+        <tr>
+            <td>{{ c.id_categoria }}</td>
+            <td>{{ c.nome_categoria }}</td>
+            <td>
+                <a href="/categorias/editar/{{ c.id_categoria }}">Editar</a>
+                <form action="/categorias/deletar/{{ c.id_categoria }}" method="POST" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Tem certeza?')">Deletar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cadastrar/Editar Favorito</title>
+</head>
+<body>
+    <h1>{% if favorito %}Editar{% else %}Novo{% endif %} Favorito</h1>
+    <form method="POST">
+        <label>Usuário:</label>
+        <select name="id_usuario" required>
+            {% for usuario in usuarios %}
+                <option value="{{ usuario.id_usuario }}"
+                {% if favorito and favorito.id_usuario == usuario.id_usuario %}selected{% endif %}>
+                    {{ usuario.nome }}
+                </option>
+            {% endfor %}
+        </select><br>
+        <label>Anúncio:</label>
+        <select name="id_anuncio" required>
+            {% for anuncio in anuncios %}
+                <option value="{{ anuncio.id_anuncio }}"
+                {% if favorito and favorito.id_anuncio == anuncio.id_anuncio %}selected{% endif %}>
+                    {{ anuncio.titulo }}
+                </option>
+            {% endfor %}
+        </select><br>
+        <button type="submit">{% if favorito %}Atualizar{% else %}Cadastrar{% endif %}</button>
+    </form>
+    <a href="/favoritos">Voltar</a>
+</body>
+</html>

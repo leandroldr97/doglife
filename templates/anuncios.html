@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Anúncios</title>
+</head>
+<body>
+    <h1>Anúncios</h1>
+    <a href="/anuncios/novo">Novo Anúncio</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Usuário</th>
+            <th>Categoria</th>
+            <th>Ações</th>
+        </tr>
+        {% for a in anuncios %}
+        <tr>
+            <td>{{ a.id_anuncio }}</td>
+            <td>{{ a.titulo }}</td>
+            <td>{{ a.descricao }}</td>
+            <td>{{ a.preco }}</td>
+            <td>{{ a.usuario.nome }}</td>
+            <td>{{ a.categoria.nome_categoria }}</td>
+            <td>
+                <a href="/anuncios/editar/{{ a.id_anuncio }}">Editar</a>
+                <form action="/anuncios/deletar/{{ a.id_anuncio }}" method="POST" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Tem certeza?')">Deletar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+

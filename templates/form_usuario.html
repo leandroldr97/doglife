@@ -1,0 +1,7 @@
+<h1>{% if usuario %}Editar{% else %}Novo{% endif %} Usuário</h1>
+<form method="post">
+    Nome: <input type="text" name="nome" value="{{ usuario.nome if usuario else '' }}"><br>
+    Email: <input type="email" name="email" value="{{ usuario.email if usuario else '' }}"><br>
+    Senha: <input type="password" name="senha" value="{{ usuario.senha if usuario else '' }}"><br>
+    <button type="submit">Salvar</button>
+</form>
