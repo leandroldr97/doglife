@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cadastrar/Editar Resposta</title>
+</head>
+<body>
+    <h1>{% if resposta %}Editar{% else %}Nova{% endif %} Resposta</h1>
+    <form method="POST">
+        <label>Texto da Resposta:</label>
+        <textarea name="texto_resposta" required>{{ resposta.texto_resposta if resposta else '' }}</textarea><br>
+        <label>Pergunta:</label>
+        <select name="id_pergunta" required>
+            {% for pergunta in perguntas %}
+                <option value="{{ pergunta.id_pergunta }}"
+                {% if resposta and resposta.id_pergunta == pergunta.id_pergunta %}selected{% endif %}>
+                    {{ pergunta.texto_pergunta }}
+                </option>
+            {% endfor %}
+        </select><br>
+        <button type="submit">{% if resposta %}Atualizar{% else %}Cadastrar{% endif %}</button>
+    </form>
+    <a href="/respostas">Voltar</a>
+</body>
+</html>

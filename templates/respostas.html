@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Respostas</title>
+</head>
+<body>
+    <h1>Respostas</h1>
+    <a href="/respostas/novo">Nova Resposta</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Texto</th>
+            <th>Pergunta</th>
+            <th>Ações</th>
+        </tr>
+        {% for r in respostas %}
+        <tr>
+            <td>{{ r.id_resposta }}</td>
+            <td>{{ r.texto_resposta }}</td>
+            <td>{{ r.pergunta.texto_pergunta }}</td>
+            <td>
+                <a href="/respostas/editar/{{ r.id_resposta }}">Editar</a>
+                <form action="/respostas/deletar/{{ r.id_resposta }}" method="POST" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Tem certeza?')">Deletar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

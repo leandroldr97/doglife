@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Perguntas</title>
+</head>
+<body>
+    <h1>Perguntas</h1>
+    <a href="/perguntas/novo">Nova Pergunta</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Texto</th>
+            <th>Usuário</th>
+            <th>Anúncio</th>
+            <th>Ações</th>
+        </tr>
+        {% for p in perguntas %}
+        <tr>
+            <td>{{ p.id_pergunta }}</td>
+            <td>{{ p.texto_pergunta }}</td>
+            <td>{{ p.usuario.nome }}</td>
+            <td>{{ p.anuncio.titulo }}</td>
+            <td>
+                <a href="/perguntas/editar/{{ p.id_pergunta }}">Editar</a>
+                <form action="/perguntas/deletar/{{ p.id_pergunta }}" method="POST" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Tem certeza?')">Deletar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

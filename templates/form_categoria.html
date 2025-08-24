@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cadastrar/Editar Categoria</title>
+</head>
+<body>
+    <h1>{% if categoria %}Editar{% else %}Nova{% endif %} Categoria</h1>
+    <form method="POST">
+        <label>Nome da Categoria:</label>
+        <input type="text" name="nome_categoria" value="{{ categoria.nome_categoria if categoria else '' }}" required><br>
+        <button type="submit">{% if categoria %}Atualizar{% else %}Cadastrar{% endif %}</button>
+    </form>
+    <a href="/categorias">Voltar</a>
+</body>
+</html>

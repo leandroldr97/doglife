@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Favoritos</title>
+</head>
+<body>
+    <h1>Favoritos</h1>
+    <a href="/favoritos/novo">Novo Favorito</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Usuário</th>
+            <th>Anúncio</th>
+            <th>Ações</th>
+        </tr>
+        {% for f in favoritos %}
+        <tr>
+            <td>{{ f.id_favorito }}</td>
+            <td>{{ f.usuario.nome }}</td>
+            <td>{{ f.anuncio.titulo }}</td>
+            <td>
+                <a href="/favoritos/editar/{{ f.id_favorito }}">Editar</a>
+                <form action="/favoritos/deletar/{{ f.id_favorito }}" method="POST" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Tem certeza?')">Deletar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
